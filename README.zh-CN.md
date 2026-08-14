@@ -46,6 +46,6 @@ Figma Tier 1 REST API 的限额取决于席位和套餐，Viewer/Collab 席位�
 
 ## 当前证据
 
-FrameEvidence 是 FIELD NOTE 的 AI 辅助、人工复核互操作实验。单元测试使用合成 Figma API 响应，发布工作流只验证无 Figma 凭证的干净 profile 安装与启动。真实 Figma API 读取与 Marketplace 接受仍未验证；尚无陌生用户采用、购买验证或收入。
+FrameEvidence 是 FIELD NOTE 的 AI 辅助、人工复核互操作实验。单元测试使用合成 Figma API 响应；发布工作流通过 HarnessProof 在隔离副本中安装插件锁定依赖，再对 DSH rc.6、`latest` 与实验性 `next` 验证无 Figma 凭证的干净 profile 配置组合与 Web 启动。真实 Figma API 读取与 Marketplace 接受仍未验证；尚无陌生用户采用、购买验证或收入。
 
 MIT License。FrameEvidence 是独立开源项目，与 Figma, Inc.、DeepSeek 无隶属、赞助或背书关系；相关名称只用于说明与相应产品或服务的兼容关系。

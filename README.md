@@ -68,6 +68,6 @@ MIT licensed.
 
 ## Project status
 
-FIELD NOTE built FrameEvidence as an AI-assisted, human-reviewed interoperability experiment. Unit tests use synthetic Figma API responses, and the release workflow verifies clean-profile plugin installation and boot without a Figma credential. A real Figma API read and Marketplace acceptance remain unverified. There is no independent-user adoption, purchase validation, or income yet.
+FIELD NOTE built FrameEvidence as an AI-assisted, human-reviewed interoperability experiment. Unit tests use synthetic Figma API responses, and the release workflow uses HarnessProof to install the plugin's locked dependencies in an isolated copy before checking clean-profile composition and Web boot across DSH rc.6, `latest`, and experimental `next`, all without a Figma credential. A real Figma API read and Marketplace acceptance remain unverified. There is no independent-user adoption, purchase validation, or income yet.
 
 FrameEvidence is an independent open-source project. It is not affiliated with, sponsored by, or endorsed by Figma, Inc. or DeepSeek. Figma and DeepSeek names are used only to identify compatibility with their respective products and services.

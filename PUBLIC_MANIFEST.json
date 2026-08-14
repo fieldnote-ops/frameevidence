@@ -11,13 +11,13 @@
       "target_path": "PRIVACY.md"
     },
     "README.md": {
-      "bytes": 3368,
-      "sha256": "8b7d2df54b72fb3067e15302c2d819ea43fa62ecf4c1bd75e2ba89f755199900",
+      "bytes": 3509,
+      "sha256": "741a0dc32c0faf7f34accce5b7250a6bc2b226df34ca362df72ce22685c7c284",
       "target_path": "README.md"
     },
     "README.zh-CN.md": {
-      "bytes": 2301,
-      "sha256": "178feeee4462b8c2ab59428f6453dde872292d97b1415915dafa108865798a72",
+      "bytes": 2421,
+      "sha256": "a4abc88da5636b21d97680a78dd338dcbac704db6a67635da930cd683162e0e2",
       "target_path": "README.zh-CN.md"
     },
     "SECURITY.md": {
@@ -31,8 +31,8 @@
       "target_path": "cordis.patch.yml"
     },
     "github/workflows/self-test.yml": {
-      "bytes": 1369,
-      "sha256": "96d2bec6deab12b16365d213999fc6723566f3302c2c0bf894708cf0e834b4ba",
+      "bytes": 1630,
+      "sha256": "1ddf2093b7d054d13af1736c40f4595684bcadbecb7352ab4b24b83c12d8633d",
       "target_path": ".github/workflows/self-test.yml"
     },
     "index.js": {
@@ -42,12 +42,12 @@
     },
     "package-lock.json": {
       "bytes": 9149,
-      "sha256": "68ecd5b746944bf23ec25db80905ad883f275b0c7c478b9e9f2f2933e89b03a8",
+      "sha256": "2d45ed9b4e0c5a2b47a43b8a7c63bc5e19f64ea3762e3b51c19713d704f087bc",
       "target_path": "package-lock.json"
     },
     "package.json": {
       "bytes": 1328,
-      "sha256": "f79b898df49a345175fb805ac936127525ad33b80283377fc8927c26f838cc7e",
+      "sha256": "9210484b1b4a88e7654100dde66704d9515fd43d04f4a683352759e40e5ecbf9",
       "target_path": "package.json"
     },
     "src/compact.js": {
@@ -90,5 +90,5 @@
   "public_identity": "FIELD NOTE",
   "repository": "fieldnote-ops/frameevidence",
   "schema_version": 1,
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

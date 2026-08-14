@@ -17,8 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
           node-version: '24'
           registry-url: https://registry.npmjs.org
@@ -32,16 +32,25 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        dsh_version: [0.1.0-rc.6, latest]
+        include:
+          - dsh_version: 0.1.0-rc.6
+            experimental: false
+          - dsh_version: latest
+            experimental: false
+          - dsh_version: next
+            experimental: true
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
           node-version: '24'
           registry-url: https://registry.npmjs.org
-      - run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
-      - uses: fieldnote-ops/harnessproof@6301a34b353a328c22fed21378d98301695d41ca
+      - id: smoke
+        continue-on-error: ${{ matrix.experimental }}
+        uses: fieldnote-ops/harnessproof@7b24a3f2f506c296d3a331e399586afda97b526c
         with:
           plugin_path: .
           dsh_version: ${{ matrix.dsh_version }}
           report_path: harnessproof-${{ matrix.dsh_version }}.json
+      - if: ${{ !matrix.experimental && steps.smoke.outcome != 'success' }}
+        run: exit 1
