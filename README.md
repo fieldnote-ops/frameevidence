@@ -29,21 +29,30 @@ dsh plugin --profile web add github:fieldnote-ops/frameevidence#97f67c9a049a26c9
 
 The full commit above is the last publicly verified runtime revision. Inspect `main` for ongoing development, but pin a reviewed commit when a real design token is in scope.
 
-Set a Figma personal access token with the `file_content:read` scope before starting DSH:
+Create a Figma personal access token under **Settings → Security → Personal access tokens** with only the `file_content:read` scope. Figma PATs expire after at most 90 days, so choose the shortest useful lifetime and revoke the token after the probe if it is no longer needed. Read the token interactively so it does not enter shell history:
 
 ```sh
-export FIGMA_ACCESS_TOKEN='...'
+printf 'Figma PAT: '
+IFS= read -r -s FIGMA_ACCESS_TOKEN
+printf '\n'
+export FIGMA_ACCESS_TOKEN
 npx @deepseek-ai/dsh web
 ```
 
-Then give the agent a Figma file or node URL and ask it to inspect the design before implementation.
+Then give the agent a Figma file or node URL that the token-owning account can access and ask it to inspect the design before implementation. See Figma's official [PAT instructions](https://developers.figma.com/docs/rest-api/personal-access-tokens/) and [scope reference](https://developers.figma.com/docs/rest-api/scopes/).
 
 ## Opt-in live API probe
 
-To close the real-API evidence gap without sending data to a maintainer, clone this repository, run `npm ci --ignore-scripts --registry=https://registry.npmjs.org`, and inject `FIGMA_ACCESS_TOKEN` plus a caller-selected node URL as `FRAMEEVIDENCE_URL` through the process environment. Then run:
+To close the real-API evidence gap without sending data to a maintainer, clone this repository and run `npm ci --ignore-scripts --registry=https://registry.npmjs.org`. Inject the PAT and a caller-selected node URL through the process environment without putting either value in a command or committed file:
 
 ```sh
+printf 'Figma PAT: '
+IFS= read -r -s FIGMA_ACCESS_TOKEN
+printf '\nFigma node URL: '
+IFS= read -r FRAMEEVIDENCE_URL
+export FIGMA_ACCESS_TOKEN FRAMEEVIDENCE_URL
 npm run live:smoke
+unset FIGMA_ACCESS_TOKEN FRAMEEVIDENCE_URL
 ```
 
 The probe is never automatic. It executes both `figma_inspect` and `figma_render`, then creates a new `0600` `frameevidence-live-smoke.json`. It refuses to overwrite prior evidence and records no token, design URL, file key, node id, node name, raw API response, or temporary render URL.

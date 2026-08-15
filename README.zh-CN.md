@@ -29,21 +29,30 @@ dsh plugin --profile web add github:fieldnote-ops/frameevidence#97f67c9a049a26c9
 
 上述完整 commit 是上一份已公开验证的运行时版本。可以查看 `main` 的持续开发，但真实设计 token 进入范围时应固定到已审阅 commit。
 
-启动 DSH 前，设置带有 `file_content:read` scope 的 Figma Personal Access Token：
+进入 Figma 的 **Settings → Security → Personal access tokens**，创建只带 `file_content:read` scope 的 PAT。Figma PAT 最长只能设置 90 天有效期；请选择满足测试所需的最短期限，不再使用时立即撤销。通过交互读取，避免 token 进入 shell 历史：
 
 ```sh
-export FIGMA_ACCESS_TOKEN='...'
+printf 'Figma PAT: '
+IFS= read -r -s FIGMA_ACCESS_TOKEN
+printf '\n'
+export FIGMA_ACCESS_TOKEN
 npx @deepseek-ai/dsh web
 ```
 
-随后把 Figma 文件或节点链接交给 Agent，并明确要求“先读取设计证据，再实现”。
+随后把 token 所属账号有权访问的 Figma 文件或节点链接交给 Agent，并明确要求“先读取设计证据，再实现”。详见 Figma 官方的 [PAT 创建说明](https://developers.figma.com/docs/rest-api/personal-access-tokens/)与[权限范围说明](https://developers.figma.com/docs/rest-api/scopes/)。
 
 ## 显式启用的真实 API 探针
 
-要在不向维护者发送数据的情况下补齐真实 API 证据，请克隆仓库，运行 `npm ci --ignore-scripts --registry=https://registry.npmjs.org`，并通过进程环境注入 `FIGMA_ACCESS_TOKEN` 与调用者自行选择的节点 URL `FRAMEEVIDENCE_URL`。然后运行：
+要在不向维护者发送数据的情况下补齐真实 API 证据，请克隆仓库并运行 `npm ci --ignore-scripts --registry=https://registry.npmjs.org`。通过进程环境注入 PAT 与调用者自行选择的节点 URL，不要把任何一个值写进命令或已提交文件：
 
 ```sh
+printf 'Figma PAT: '
+IFS= read -r -s FIGMA_ACCESS_TOKEN
+printf '\nFigma 节点 URL: '
+IFS= read -r FRAMEEVIDENCE_URL
+export FIGMA_ACCESS_TOKEN FRAMEEVIDENCE_URL
 npm run live:smoke
+unset FIGMA_ACCESS_TOKEN FRAMEEVIDENCE_URL
 ```
 
 探针绝不会自动执行。它会依次调用 `figma_inspect` 与 `figma_render`，随后新建权限为 `0600` 的 `frameevidence-live-smoke.json`；若文件已经存在则拒绝覆盖。报告不记录 token、设计 URL、file key、node id、节点名称、原始 API 响应或临时渲染 URL。
