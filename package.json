@@ -1,6 +1,6 @@
 {
   "name": "frameevidence",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Bounded, read-only design evidence for agent harnesses; compatible with DeepSeek Harness and the Figma REST API.",
   "type": "module",
   "main": "index.js",
@@ -11,6 +11,7 @@
   },
   "files": [
     "index.js",
+    "live-smoke.js",
     "src",
     "cordis.patch.yml",
     "README.md",
@@ -21,7 +22,8 @@
   ],
   "scripts": {
     "test": "node --test test/*.test.js",
-    "check": "npm test && npm pack --dry-run"
+    "check": "npm test && npm pack --dry-run",
+    "live:smoke": "node live-smoke.js"
   },
   "engines": {
     "node": "^22.19.0 || >=24.0.0"

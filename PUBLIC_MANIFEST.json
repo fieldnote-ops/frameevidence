@@ -11,13 +11,13 @@
       "target_path": "PRIVACY.md"
     },
     "README.md": {
-      "bytes": 3509,
-      "sha256": "741a0dc32c0faf7f34accce5b7250a6bc2b226df34ca362df72ce22685c7c284",
+      "bytes": 4238,
+      "sha256": "1d4825289d6fa371d5690cbde6c2c1bd5046b392836b16c153f16220257f90b1",
       "target_path": "README.md"
     },
     "README.zh-CN.md": {
-      "bytes": 2421,
-      "sha256": "a4abc88da5636b21d97680a78dd338dcbac704db6a67635da930cd683162e0e2",
+      "bytes": 3163,
+      "sha256": "0f4f4b10d3f322ef90057c4b4326ab8dcf6ce81b060e21e362e977d0a29a8f98",
       "target_path": "README.zh-CN.md"
     },
     "SECURITY.md": {
@@ -32,7 +32,7 @@
     },
     "github/workflows/self-test.yml": {
       "bytes": 1630,
-      "sha256": "1ddf2093b7d054d13af1736c40f4595684bcadbecb7352ab4b24b83c12d8633d",
+      "sha256": "910fe31ad15ae7194c2dfb903d8ef2570e885bbfdeb6ef362e6ee762f6ef55e7",
       "target_path": ".github/workflows/self-test.yml"
     },
     "index.js": {
@@ -40,14 +40,19 @@
       "sha256": "873c305202de3fe73d246c06c73d73496f38c476b99c47790ba7f13e53750f8a",
       "target_path": "index.js"
     },
+    "live-smoke.js": {
+      "bytes": 4427,
+      "sha256": "12fa2c2036578bf2cfa69f5386670a9a9cd01c0ba886559ea1aa62be25697432",
+      "target_path": "live-smoke.js"
+    },
     "package-lock.json": {
       "bytes": 9149,
-      "sha256": "2d45ed9b4e0c5a2b47a43b8a7c63bc5e19f64ea3762e3b51c19713d704f087bc",
+      "sha256": "f1e7d8bb2ddaf53388748ba36e3ef2215f4b70c728922c435b8a59458a9eb9d3",
       "target_path": "package-lock.json"
     },
     "package.json": {
-      "bytes": 1328,
-      "sha256": "9210484b1b4a88e7654100dde66704d9515fd43d04f4a683352759e40e5ecbf9",
+      "bytes": 1389,
+      "sha256": "82fb1b72a938416c63bc7c093ae5f3584a7f9c7a1ef29e9181006383a4f44dc9",
       "target_path": "package.json"
     },
     "src/compact.js": {
@@ -75,6 +80,11 @@
       "sha256": "04922088e6f567357fa4d5d5a1b5a6d594a1eb7b69c3e2dbd8be727af00678ca",
       "target_path": "test/compact.test.js"
     },
+    "test/live-smoke.test.js": {
+      "bytes": 3431,
+      "sha256": "47d0137e72c78d913d960c822cdc873f575a94fcb6c4ddb8eafbf0ba1194a9a8",
+      "target_path": "test/live-smoke.test.js"
+    },
     "test/plugin.test.js": {
       "bytes": 2509,
       "sha256": "6931a9666e85057eed8b374de02485a7656134d33fe1913b1752a1215cb8352c",
@@ -90,5 +100,5 @@
   "public_identity": "FIELD NOTE",
   "repository": "fieldnote-ops/frameevidence",
   "schema_version": 1,
-  "version": "0.1.1"
+  "version": "0.1.2"
 }

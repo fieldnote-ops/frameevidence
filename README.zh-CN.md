@@ -24,6 +24,16 @@ npx @deepseek-ai/dsh web
 
 随后把 Figma 文件或节点链接交给 Agent，并明确要求“先读取设计证据，再实现”。
 
+## 显式启用的真实 API 探针
+
+要在不向维护者发送数据的情况下补齐真实 API 证据，请克隆仓库，运行 `npm ci --ignore-scripts --registry=https://registry.npmjs.org`，并通过进程环境注入 `FIGMA_ACCESS_TOKEN` 与调用者自行选择的节点 URL `FRAMEEVIDENCE_URL`。然后运行：
+
+```sh
+npm run live:smoke
+```
+
+探针绝不会自动执行。它会依次调用 `figma_inspect` 与 `figma_render`，随后新建权限为 `0600` 的 `frameevidence-live-smoke.json`；若文件已经存在则拒绝覆盖。报告不记录 token、设计 URL、file key、node id、节点名称、原始 API 响应或临时渲染 URL。
+
 ## 安全边界
 
 - Token 只从宿主环境变量读取，不作为模型工具参数，也不会出现在输出里。
@@ -46,6 +56,6 @@ Figma Tier 1 REST API 的限额取决于席位和套餐，Viewer/Collab 席位�
 
 ## 当前证据
 
-FrameEvidence 是 FIELD NOTE 的 AI 辅助、人工复核互操作实验。单元测试使用合成 Figma API 响应；发布工作流通过 HarnessProof 在隔离副本中安装插件锁定依赖，再对 DSH rc.6、`latest` 与实验性 `next` 验证无 Figma 凭证的干净 profile 配置组合与 Web 启动。真实 Figma API 读取与 Marketplace 接受仍未验证；尚无陌生用户采用、购买验证或收入。
+FrameEvidence 是 FIELD NOTE 的 AI 辅助、人工复核互操作实验。单元测试使用合成 Figma API 响应；发布工作流通过 HarnessProof 在隔离副本中安装插件锁定依赖，再对 DSH rc.6、`latest` 与实验性 `next` 验证无 Figma 凭证的干净 profile 配置组合与 Web 启动。项目已提供显式启用、凭据安全的真实 API 探针，但尚未对真实 Figma 文件执行；Marketplace 接受也仍未验证。尚无陌生用户采用、购买验证或收入。
 
 MIT License。FrameEvidence 是独立开源项目，与 Figma, Inc.、DeepSeek 无隶属、赞助或背书关系；相关名称只用于说明与相应产品或服务的兼容关系。

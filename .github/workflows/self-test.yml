@@ -47,7 +47,7 @@ jobs:
           registry-url: https://registry.npmjs.org
       - id: smoke
         continue-on-error: ${{ matrix.experimental }}
-        uses: fieldnote-ops/harnessproof@7b24a3f2f506c296d3a331e399586afda97b526c
+        uses: fieldnote-ops/harnessproof@2b7a246ab595313366cd9806380c3ff0fd6264c9
         with:
           plugin_path: .
           dsh_version: ${{ matrix.dsh_version }}

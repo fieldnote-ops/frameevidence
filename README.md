@@ -24,6 +24,16 @@ npx @deepseek-ai/dsh web
 
 Then give the agent a Figma file or node URL and ask it to inspect the design before implementation.
 
+## Opt-in live API probe
+
+To close the real-API evidence gap without sending data to a maintainer, clone this repository, run `npm ci --ignore-scripts --registry=https://registry.npmjs.org`, and inject `FIGMA_ACCESS_TOKEN` plus a caller-selected node URL as `FRAMEEVIDENCE_URL` through the process environment. Then run:
+
+```sh
+npm run live:smoke
+```
+
+The probe is never automatic. It executes both `figma_inspect` and `figma_render`, then creates a new `0600` `frameevidence-live-smoke.json`. It refuses to overwrite prior evidence and records no token, design URL, file key, node id, node name, raw API response, or temporary render URL.
+
 ## Security and data boundary
 
 - The token is read only from the host environment. It is never accepted as a model tool argument and is never returned in output.
@@ -68,6 +78,6 @@ MIT licensed.
 
 ## Project status
 
-FIELD NOTE built FrameEvidence as an AI-assisted, human-reviewed interoperability experiment. Unit tests use synthetic Figma API responses, and the release workflow uses HarnessProof to install the plugin's locked dependencies in an isolated copy before checking clean-profile composition and Web boot across DSH rc.6, `latest`, and experimental `next`, all without a Figma credential. A real Figma API read and Marketplace acceptance remain unverified. There is no independent-user adoption, purchase validation, or income yet.
+FIELD NOTE built FrameEvidence as an AI-assisted, human-reviewed interoperability experiment. Unit tests use synthetic Figma API responses, and the release workflow uses HarnessProof to install the plugin's locked dependencies in an isolated copy before checking clean-profile composition and Web boot across DSH rc.6, `latest`, and experimental `next`, all without a Figma credential. An opt-in, credential-safe live probe is available but has not yet been executed against a real Figma file; Marketplace acceptance also remains unverified. There is no independent-user adoption, purchase validation, or income yet.
 
 FrameEvidence is an independent open-source project. It is not affiliated with, sponsored by, or endorsed by Figma, Inc. or DeepSeek. Figma and DeepSeek names are used only to identify compatibility with their respective products and services.
