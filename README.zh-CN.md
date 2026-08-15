@@ -1,5 +1,7 @@
 # FrameEvidence
 
+[![Self-test](https://github.com/fieldnote-ops/frameevidence/actions/workflows/self-test.yml/badge.svg?branch=main)](https://github.com/fieldnote-ops/frameevidence/actions/workflows/self-test.yml)
+
 **为 Agent 提供有界、只读的设计证据。** FrameEvidence 通过 Figma REST API 读取布局、字体、颜色、组件引用与变量绑定，v0.1 以 DeepSeek Harness 插件形式打包。
 
 v0.1 严格只读，只提供两个工具：
@@ -7,13 +9,25 @@ v0.1 严格只读，只提供两个工具：
 - `figma_inspect`：返回有节点上限、面向实现的紧凑节点树，避免把完整 Figma JSON 塞进上下文。
 - `figma_render`：返回单个节点的临时 PNG、JPG、SVG 或 PDF 渲染链接。
 
+## 首屏证据
+
+| 维度 | 当前边界 |
+| --- | --- |
+| Figma 访问 | 只向 `https://api.figma.com/v1` 发出只读 REST 请求；拒绝重定向，没有工具写回 Figma。 |
+| 凭证处理 | PAT 只从指定宿主环境变量读取，不作为模型工具参数，也不进入工具或探针输出。 |
+| 上下文控制 | 原始响应有字节上限；设计证据进入模型前，深度和返回节点数量均受限。 |
+| 维护者基础设施 | 不经过维护者服务器、分析、遥测、OAuth broker 或凭证存储。 |
+| 当前验证 | 15 项无凭证测试以及干净 profile 的 DSH rc.6/`latest`/`next` consumer 已通过；真实 Figma 文件仍**未**完成显式探针。 |
+
 ## 安装
 
 安装到 Web profile：
 
 ```sh
-dsh plugin --profile web add github:fieldnote-ops/frameevidence
+dsh plugin --profile web add github:fieldnote-ops/frameevidence#97f67c9a049a26c9e8b38e7e764d2572897a6429
 ```
+
+上述完整 commit 是上一份已公开验证的运行时版本。可以查看 `main` 的持续开发，但真实设计 token 进入范围时应固定到已审阅 commit。
 
 启动 DSH 前，设置带有 `file_content:read` scope 的 Figma Personal Access Token：
 

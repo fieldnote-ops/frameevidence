@@ -1,5 +1,7 @@
 # FrameEvidence
 
+[![Self-test](https://github.com/fieldnote-ops/frameevidence/actions/workflows/self-test.yml/badge.svg?branch=main)](https://github.com/fieldnote-ops/frameevidence/actions/workflows/self-test.yml)
+
 **Bounded, read-only design evidence for agent harnesses.** FrameEvidence lets an agent inspect layout, typography, paints, component references, and variable bindings through the Figma REST API before it writes code. Version 0.1 is packaged as a plugin for DeepSeek Harness.
 
 FrameEvidence is deliberately read-only. Version 0.1 provides two tools:
@@ -7,13 +9,25 @@ FrameEvidence is deliberately read-only. Version 0.1 provides two tools:
 - `figma_inspect` returns a bounded, implementation-focused node tree instead of dumping Figma's full JSON schema into the model context.
 - `figma_render` returns a temporary PNG, JPG, SVG, or PDF render URL for one node.
 
+## Evidence at a glance
+
+| Surface | Current boundary |
+| --- | --- |
+| Figma access | Read-only REST requests to `https://api.figma.com/v1`; redirects are rejected and no tool writes to Figma. |
+| Credential handling | The PAT is read from a named host environment variable, never accepted as a model tool argument, and never returned in tool or probe output. |
+| Context control | Raw responses are byte-capped; depth and returned node count are bounded before design evidence reaches the model. |
+| Maintainer infrastructure | No maintainer server, analytics, telemetry, OAuth broker, or credential store is involved. |
+| Verified today | 15 credential-free tests and clean-profile DSH rc.6/`latest`/`next` consumers pass. A real Figma file has **not** yet completed the opt-in probe. |
+
 ## Install
 
 Install the repository into the Web profile:
 
 ```sh
-dsh plugin --profile web add github:fieldnote-ops/frameevidence
+dsh plugin --profile web add github:fieldnote-ops/frameevidence#97f67c9a049a26c9e8b38e7e764d2572897a6429
 ```
+
+The full commit above is the last publicly verified runtime revision. Inspect `main` for ongoing development, but pin a reviewed commit when a real design token is in scope.
 
 Set a Figma personal access token with the `file_content:read` scope before starting DSH:
 

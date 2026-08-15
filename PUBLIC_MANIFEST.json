@@ -11,13 +11,13 @@
       "target_path": "PRIVACY.md"
     },
     "README.md": {
-      "bytes": 4238,
-      "sha256": "1d4825289d6fa371d5690cbde6c2c1bd5046b392836b16c153f16220257f90b1",
+      "bytes": 5443,
+      "sha256": "6679bd6389086348d5060e3921a9f42f33689699b71716edfa8056ac0791c958",
       "target_path": "README.md"
     },
     "README.zh-CN.md": {
-      "bytes": 3163,
-      "sha256": "0f4f4b10d3f322ef90057c4b4326ab8dcf6ce81b060e21e362e977d0a29a8f98",
+      "bytes": 4283,
+      "sha256": "1faf558b621ea06b5b32b7474bd74f977f0af7c50248e9eae583d7e11cf1473d",
       "target_path": "README.zh-CN.md"
     },
     "SECURITY.md": {
@@ -47,12 +47,12 @@
     },
     "package-lock.json": {
       "bytes": 9149,
-      "sha256": "f1e7d8bb2ddaf53388748ba36e3ef2215f4b70c728922c435b8a59458a9eb9d3",
+      "sha256": "b0e2b3623591d2056f6eba7270b132a1a1f488c73c7657213e7948e37eafd674",
       "target_path": "package-lock.json"
     },
     "package.json": {
       "bytes": 1389,
-      "sha256": "82fb1b72a938416c63bc7c093ae5f3584a7f9c7a1ef29e9181006383a4f44dc9",
+      "sha256": "c4c464f291f317e8edef1855a7287ec5d6306efafe9be7d1f713c604c6c29e1f",
       "target_path": "package.json"
     },
     "src/compact.js": {
@@ -100,5 +100,5 @@
   "public_identity": "FIELD NOTE",
   "repository": "fieldnote-ops/frameevidence",
   "schema_version": 1,
-  "version": "0.1.2"
+  "version": "0.1.3"
 }
